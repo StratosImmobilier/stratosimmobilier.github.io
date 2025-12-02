@@ -1,207 +1,1197 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stratos Immobilier</title>
+    <meta charset="UTF-8">
+    <title>Stratos Immobilier – Locations résidentielles & commerciales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-    body {
-        margin: 0;
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        background: #0d0d0d;
-        color: #f2f2f2;
-    }
+    <!-- Police Google (facultatif) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    /* NAVIGATION */
-    header {
-        background: #000;
-        padding: 20px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #333;
-    }
+    <style>
+        :root {
+            --bg-main: #050509;
+            --bg-section: #101018;
+            --bg-card: #151524;
+            --bg-card-alt: #1b1b2c;
+            --accent: #f5c243;
+            --accent-soft: rgba(245, 194, 67, 0.15);
+            --text-main: #f4f4f4;
+            --text-muted: #a0a0b5;
+            --border-subtle: #2a2a3d;
+            --danger: #e74c3c;
+        }
 
-    .logo {
-        font-size: 28px;
-        font-weight: 700;
-        letter-spacing: 2px;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    nav a {
-        color: #e0e0e0;
-        margin-left: 30px;
-        text-decoration: none;
-        font-size: 16px;
-        transition: 0.3s;
-    }
-    nav a:hover {
-        color: #fff;
-    }
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #15152b 0, #050509 55%);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-    /* BANNER */
-    .hero {
-        height: 70vh;
-        background: url('photo1.jpg') center/cover no-repeat;
-        position: relative;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .hero::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.55);
-    }
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-    .hero-text {
-        position: absolute;
-        bottom: 50px;
-        left: 50px;
-        z-index: 2;
-    }
+        /* Layout global */
 
-    .hero-text h1 {
-        font-size: 56px;
-        font-weight: 800;
-        margin: 0;
-        color: #fff;
-    }
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .hero-text p {
-        font-size: 20px;
-        color: #d9d9d9;
-        margin-top: 10px;
-    }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
-    /* SECTION APPARTEMENTS */
-    .section {
-        padding: 70px 60px;
-    }
+        /* Header / Nav */
 
-    .section h2 {
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 40px;
-        border-left: 4px solid #b8860b;
-        padding-left: 15px;
-    }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(16px);
+            background: linear-gradient(to bottom, rgba(5,5,9,0.96), rgba(5,5,9,0.92));
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 35px;
-    }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+        }
 
-    .card {
-        background: #111;
-        border-radius: 12px;
-        overflow: hidden;
-        transition: 0.3s;
-        border: 1px solid #222;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 25px rgba(0,0,0,0.5);
-    }
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 20% 20%, #ffe69a, #f5c243 40%, #5a3d11 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(245, 194, 67, 0.35);
+            font-weight: 700;
+            font-size: 1rem;
+            color: #050509;
+        }
 
-    .card img {
-        width: 100%;
-        height: 210px;
-        object-fit: cover;
-    }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
 
-    .card-content {
-        padding: 22px;
-    }
+        .logo-text-main {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
 
-    .card-content h3 {
-        margin: 0;
-        font-size: 22px;
-        color: #fff;
-    }
+        .logo-text-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
 
-    .card-content p {
-        color: #bfbfbf;
-        margin: 8px 0 16px;
-        line-height: 1.5;
-    }
+        .nav-links {
+            display: flex;
+            gap: 1.4rem;
+            font-size: 0.95rem;
+        }
 
-    .btn {
-        display: inline-block;
-        padding: 12px 22px;
-        background: #b8860b;
-        color: #000;
-        font-weight: bold;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: 0.3s;
-    }
+        .nav-links a {
+            position: relative;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
 
-    .btn:hover {
-        background: #d4a017;
-    }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.25rem;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 999px;
+            transition: width 0.18s ease-out;
+        }
 
-    /* FOOTER */
-    footer {
-        text-align: center;
-        padding: 35px;
-        background: #000;
-        color: #bbb;
-        margin-top: 40px;
-        border-top: 1px solid #222;
-    }
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
 
-</style>
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .nav-phone {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .nav-phone span {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .btn {
+            border-radius: 999px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.55rem 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.12s ease-out;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f5c243, #e7a52b);
+            color: #050509;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(245, 194, 67, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(245, 194, 67, 0.45);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-subtle);
+            background: rgba(15,15,25,0.85);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: rgba(35,35,55,0.9);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 2.5rem 0 2.5rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+            gap: 2.2rem;
+            align-items: center;
+        }
+
+        .hero-kicker {
+            font-size: 0.9rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 650;
+            margin-bottom: 0.7rem;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 34rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .hero-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(10,10,20,0.8);
+        }
+
+        .hero-card {
+            background: radial-gradient(circle at top, #26263d, #151524);
+            border-radius: 20px;
+            padding: 1.4rem;
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+        }
+
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-card-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .hero-card-pill {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-price {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .hero-price span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero-apartment-features {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.4rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero-apartment-features span {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .hero-thumb {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: #050509;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-thumb img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .hero-thumb-tag {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.65);
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        .hero-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .hero-card-footer strong {
+            color: var(--accent);
+        }
+
+        /* Section wrapper */
+
+        section {
+            padding: 1.5rem 0 0.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .section-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Grille d’immeubles (pour futur split par immeuble) */
+
+        .building-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.8fr);
+            gap: 1.4rem;
+        }
+
+        .building-card {
+            background: var(--bg-section);
+            border-radius: 18px;
+            border: 1px solid var(--border-subtle);
+            padding: 1.1rem;
+        }
+
+        .building-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.7rem;
+        }
+
+        .building-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .building-city {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .building-tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.09);
+            background: rgba(0,0,0,0.25);
+        }
+
+        .building-body {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .building-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+        }
+
+        .meta-pill {
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .building-apartments {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .apartment-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 0.95rem;
+            border: 1px solid var(--border-subtle);
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+            gap: 0.9rem;
+        }
+
+        .apartment-main {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .apartment-title {
+            font-size: 0.95rem;
+            font-weight: 550;
+        }
+
+        .apartment-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent);
+        }
+
+        .apartment-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .apartment-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.8rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .apartment-meta-row span {
+            color: var(--text-main);
+        }
+
+        .apartment-price {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .apartment-price span {
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .apartment-cta {
+            margin-top: 0.5rem;
+        }
+
+        .apartment-cta .btn-outline {
+            font-size: 0.8rem;
+            padding: 0.45rem 0.9rem;
+        }
+
+        .apartment-media {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 0.5rem;
+        }
+
+        .apt-main-img {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: #050509;
+        }
+
+        .apt-main-img img {
+            width: 100%;
+            height: 145px;
+            object-fit: cover;
+        }
+
+        .apt-thumbs {
+            display: grid;
+            grid-template-rows: repeat(2, minmax(0, 1fr));
+            gap: 0.4rem;
+        }
+
+        .apt-thumb {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: #050509;
+        }
+
+        .apt-thumb img {
+            width: 100%;
+            height: 68px;
+            object-fit: cover;
+        }
+
+        /* Section produits: courte durée / entrepôt / garages */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .product-card {
+            background: var(--bg-card-alt);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .product-pill {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            width: fit-content;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 550;
+        }
+
+        .product-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .product-list {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding-left: 1rem;
+        }
+
+        .product-list li {
+            margin-bottom: 0.3rem;
+        }
+
+        .product-footer {
+            margin-top: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Section contact */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+            gap: 1.4rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card {
+            background: var(--bg-section);
+            border-radius: 18px;
+            border: 1px solid var(--border-subtle);
+            padding: 1.1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .contact-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        .contact-lines {
+            margin-top: 0.6rem;
+            display: grid;
+            gap: 0.3rem;
+        }
+
+        .contact-lines span {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contact-lines span strong {
+            color: var(--text-main);
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border-radius: 18px;
+            border: 1px solid var(--border-subtle);
+            padding: 1.1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .form-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: rgba(10,10,20,0.95);
+            color: var(--text-main);
+            padding: 0.5rem 0.7rem;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px rgba(245, 194, 67, 0.7);
+        }
+
+        .form-textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        /* Footer */
+
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 1.1rem 0 1.6rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: radial-gradient(circle at bottom, #232342 0, #050509 60%);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 960px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .building-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .apartment-card {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .nav {
+                flex-wrap: wrap;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding-top: 0.3rem;
+                border-top: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .hero {
+                padding-top: 1.6rem;
+            }
+
+            .product-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+    </style>
 </head>
-
 <body>
+<div class="page">
 
-<header>
-    <div class="logo">STRATOS IMMOBILIER</div>
-    <nav>
-        <a href="#appartements">Appartements</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <!-- HEADER -->
+    <header>
+        <div class="container nav">
+            <div class="logo">
+                <div class="logo-mark">S</div>
+                <div class="logo-text">
+                    <span class="logo-text-main">Stratos Immobilier</span>
+                    <span class="logo-text-sub">Résidentiel · Courte durée · Espaces & garages</span>
+                </div>
+            </div>
 
-<div class="hero">
-    <div class="hero-text">
-        <h1>Vivre en Grand.</h1>
-        <p>Résidences modernes, localisations stratégiques.</p>
-    </div>
-</div>
+            <nav class="nav-links">
+                <a href="#a-propos">À propos</a>
+                <a href="#appartements">Appartements</a>
+                <a href="#courte-duree">Courte durée</a>
+                <a href="#entrepot">Entreposage</a>
+                <a href="#garages">Garages</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-<section class="section" id="appartements">
-    <h2>Appartements Disponibles</h2>
-
-    <div class="grid">
-
-        <!-- Appartement 1 : seul lien actif pour l’instant -->
-        <div class="card">
-            <img src="photo2.jpg" alt="Appartement 4 1/2 Montréal-Nord">
-            <div class="card-content">
-                <h3>4 ½ – Montréal-Nord</h3>
-                <p>Entièrement rénové, 2 chambres, cuisine moderne, 1650 $ / mois.</p>
-                <a class="btn" href="appartement1.html">Voir l’annonce</a>
+            <div class="nav-cta">
+                <div class="nav-phone">
+                    Info-location&nbsp;<span>514-000-0000</span>
+                </div>
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                    Demander une visite
+                </button>
             </div>
         </div>
+    </header>
 
-        <!--
-        Pour ajouter plus tard d’autres appartements, tu pourras
-        copier-coller ce bloc <div class="card"> et changer :
-        - l’image
-        - le texte
-        - le lien href="appartementX.html"
-        -->
+    <!-- HERO -->
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <div class="hero-kicker">Location premium · Montréal & environs</div>
+                    <h1 class="hero-title">
+                        Appartements rénovés & espaces flexibles pour
+                        <span>locataires exigeants</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Stratos Immobilier offre des logements résidentiels, de la location courte durée,
+                        ainsi que des espaces d’entreposage et des garages, avec une gestion sérieuse et humaine.
+                        Découvrez nos disponibilités actuelles et futures par immeuble.
+                    </p>
 
-    </div>
-</section>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="document.getElementById('appartements').scrollIntoView({behavior:'smooth'})">
+                            Voir l’Appartement 1
+                        </button>
+                        <button class="btn btn-outline" onclick="document.getElementById('courte-duree').scrollIntoView({behavior:'smooth'})">
+                            Location courte durée
+                        </button>
+                    </div>
 
-<footer>
-    © 2025 Stratos Immobilier — Tous droits réservés.
-</footer>
+                    <div class="hero-badges">
+                        <div class="hero-badge">Gestion professionnelle</div>
+                        <div class="hero-badge">Réponses rapides</div>
+                        <div class="hero-badge">Montréal & Montréal-Nord</div>
+                    </div>
+                </div>
+
+                <aside class="hero-card">
+                    <div class="hero-card-header">
+                        <div>
+                            <div class="hero-card-title">En vedette</div>
+                            <div class="hero-price">1 650&nbsp;$ / mois <span>· 4&nbsp;½ entièrement rénové</span></div>
+                        </div>
+                        <div class="hero-card-pill">Appartement 1 – Montréal-Nord</div>
+                    </div>
+
+                    <div class="hero-thumb">
+                        <!-- Remplace src par ta vraie photo -->
+                        <img src="images/appartement1-hero.jpg" alt="Appartement 1 - 4 1/2 rénové Montréal-Nord">
+                        <div class="hero-thumb-tag">Disponible maintenant</div>
+                    </div>
+
+                    <div class="hero-apartment-features">
+                        <div><span>4&nbsp;½</span> · 2 chambres fermées</div>
+                        <div><span>Étage</span> · à préciser</div>
+                        <div><span>Stationnement</span> · à confirmer</div>
+                        <div><span>Localisation</span> · Montréal-Nord</div>
+                    </div>
+
+                    <div class="hero-card-footer">
+                        <div>
+                            <strong>Appartement 1</strong><br>
+                            Contrat sérieux, propriétaire impliqué.
+                        </div>
+                        <button class="btn btn-primary" onclick="document.getElementById('appartement-1').scrollIntoView({behavior:'smooth'})">
+                            Détails & photos
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- À PROPOS -->
+        <section id="a-propos">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="section-tag">À propos</div>
+                        <h2 class="section-title">Une gestion simple, claire et professionnelle</h2>
+                        <p class="section-subtitle">
+                            Stratos Immobilier développe progressivement un portefeuille d’immeubles avec une
+                            approche rigoureuse : logements propres, rénovations réfléchies, communication transparente
+                            avec les locataires et valorisation à long terme des bâtiments.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPARTEMENTS (avec Appartement 1 + structure par immeuble) -->
+        <section id="appartements">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="section-tag">Appartements</div>
+                        <h2 class="section-title">Logements résidentiels par immeuble</h2>
+                        <p class="section-subtitle">
+                            La structure ci-dessous est pensée pour séparer facilement les annonces par immeuble :
+                            chaque bloc « Immeuble » pourra devenir une page dédiée plus tard. L’Appartement 1
+                            est déjà présenté dans l’« Immeuble – Montréal-Nord ».
+                        </p>
+                    </div>
+                    <button class="btn btn-outline">
+                        Voir toutes les futures annonces
+                    </button>
+                </div>
+
+                <div class="building-grid">
+                    <!-- IMMEUBLE 1 – Montréal-Nord -->
+                    <article class="building-card" id="immeuble-mtl-nord">
+                        <div class="building-header">
+                            <div>
+                                <div class="building-name">Immeuble – Montréal-Nord</div>
+                                <div class="building-city">Secteur résidentiel, rue à préciser</div>
+                            </div>
+                            <div class="building-tag">Portefeuille Stratos – #1</div>
+                        </div>
+                        <div class="building-body">
+                            <p>
+                                Immeuble multi-logements situé à Montréal-Nord. Les appartements sont rénovés
+                                progressivement avec une attention particulière aux cuisines, salles de bain,
+                                insonorisation et efficacité de l’espace.
+                            </p>
+                            <div class="building-meta">
+                                <div class="meta-pill">Logements 4&nbsp;½ & 5&nbsp;½</div>
+                                <div class="meta-pill">Proximité services & transport</div>
+                                <div class="meta-pill">Gestion centralisée Stratos</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- APPARTEMENTS DE L’IMMEUBLE (incluant Appartement 1) -->
+                    <div class="building-apartments">
+                        <!-- APPARTEMENT 1 -->
+                        <article class="apartment-card" id="appartement-1">
+                            <div class="apartment-main">
+                                <div class="apartment-label">Appartement 1 · Montréal-Nord</div>
+                                <h3 class="apartment-title">4&nbsp;½ entièrement rénové – 1 650&nbsp;$ / mois</h3>
+                                <p class="apartment-desc">
+                                    4&nbsp;½ moderne à Montréal-Nord, complètement rénové : cuisine au goût du jour,
+                                    salle de bain refaite, nouveaux revêtements de plancher, éclairage encastré (si
+                                    applicable) et finitions propres. Idéal pour un couple ou de jeunes
+                                    professionnels.
+                                </p>
+                                <div class="apartment-meta-row">
+                                    <div><span>Surface :</span> à préciser (p.ex. ± 900 pi²)</div>
+                                    <div><span>Chambres :</span> 2 chambres fermées</div>
+                                    <div><span>Électroménagers :</span> à préciser</div>
+                                    <div><span>Disponibilité :</span> immédiate (à ajuster)</div>
+                                </div>
+                                <div class="apartment-price">
+                                    1 650&nbsp;$ / mois <span>· bail 12 mois minimum</span>
+                                </div>
+                                <div class="apartment-cta">
+                                    <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                                        Je veux plus d’informations
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="apartment-media">
+                                <div class="apt-main-img">
+                                    <!-- Remplace par ta vraie image -->
+                                    <img src="images/appartement1-cuisine.jpg" alt="Cuisine rénovée - Appartement 1">
+                                </div>
+                                <div class="apt-thumbs">
+                                    <div class="apt-thumb">
+                                        <img src="images/appartement1-salon.jpg" alt="Salon - Appartement 1">
+                                    </div>
+                                    <div class="apt-thumb">
+                                        <img src="images/appartement1-sdb.jpg" alt="Salle de bain - Appartement 1">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- APPARTEMENT FUTUR (exemple, placeholder) -->
+                        <article class="apartment-card">
+                            <div class="apartment-main">
+                                <div class="apartment-label">Appartement futur</div>
+                                <h3 class="apartment-title">4&nbsp;½ ou 5&nbsp;½ – À venir</h3>
+                                <p class="apartment-desc">
+                                    Exemple d’espace réservé pour une future annonce. Cet encadré montre comment
+                                    seront ajoutés les prochains logements de cet immeuble, avec la même structure
+                                    que l’Appartement 1.
+                                </p>
+                                <div class="apartment-meta-row">
+                                    <div><span>Type :</span> à confirmer</div>
+                                    <div><span>Prix :</span> à confirmer</div>
+                                    <div><span>État :</span> en planification</div>
+                                </div>
+                                <div class="apartment-price">
+                                    Prix à déterminer <span>· inscription à venir</span>
+                                </div>
+                            </div>
+                            <div class="apartment-media">
+                                <div class="apt-main-img">
+                                    <img src="images/placeholder-immeuble.jpg" alt="Immeuble - annonce à venir">
+                                </div>
+                                <div class="apt-thumbs">
+                                    <div class="apt-thumb">
+                                        <img src="images/placeholder-interieur1.jpg" alt="Intérieur - à venir">
+                                    </div>
+                                    <div class="apt-thumb">
+                                        <img src="images/placeholder-interieur2.jpg" alt="Intérieur - à venir">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LOCATION COURTE DURÉE / ENTREPOSAGE / GARAGES -->
+        <section id="courte-duree">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="section-tag">Offre élargie</div>
+                        <h2 class="section-title">Location courte durée, entreposage & garages</h2>
+                        <p class="section-subtitle">
+                            À la façon d’un grand gestionnaire immobilier, Stratos Immobilier structure aussi
+                            ses services autour de la location de courte durée, de mini-entrepôts et de garages /
+                            espaces de stationnement, afin de maximiser l’utilisation des bâtiments.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-grid">
+                    <!-- COURTE DURÉE -->
+                    <article class="product-card">
+                        <div class="product-pill">Location courte durée</div>
+                        <h3 class="product-title">Logements meublés pour séjours de quelques nuits à quelques mois</h3>
+                        <p class="product-desc">
+                            Appartements entièrement meublés, équipés pour le télétravail, avec internet haute
+                            vitesse, cuisine fonctionnelle et literie de qualité. Parfait pour contrats temporaires,
+                            visiteurs ou séjours exploratoires à Montréal.
+                        </p>
+                        <ul class="product-list">
+                            <li>Durée minimale : à préciser (ex. 30 jours selon règlementation)</li>
+                            <li>Internet haute vitesse inclus</li>
+                            <li>Électricité / chauffage : à confirmer selon unité</li>
+                            <li>Ménage périodique possible en supplément</li>
+                        </ul>
+                        <div class="product-footer">
+                            <span>Disponibilités : en développement</span>
+                            <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                                M’inscrire sur la liste d’intérêt
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- ENTREPÔTS -->
+                    <article class="product-card" id="entrepot">
+                        <div class="product-pill">Espaces d’entreposage</div>
+                        <h3 class="product-title">Espaces d’entreposage au sous-sol ou au rez-de-chaussée</h3>
+                        <p class="product-desc">
+                            Possibilité de louer de petits espaces d’entreposage dans certains immeubles (dimension
+                            variable). Idéal pour boîtes, vélos, équipements saisonniers ou matériel d’entreprise.
+                        </p>
+                        <ul class="product-list">
+                            <li>Accès contrôlé selon les immeubles</li>
+                            <li>Dimensions modulables (à définir par espace)</li>
+                            <li>Contrats flexibles, durées à préciser</li>
+                            <li>Possibilité d’attribuer un espace par logement futur</li>
+                        </ul>
+                        <div class="product-footer">
+                            <span>Disponibilités : à confirmer par immeuble</span>
+                            <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                                Demander les espaces disponibles
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- GARAGES / STATIONNEMENT -->
+                    <article class="product-card" id="garages">
+                        <div class="product-pill">Garages & stationnements</div>
+                        <h3 class="product-title">Garages fermés et places de stationnement extérieures</h3>
+                        <p class="product-desc">
+                            Louez un garage individuel ou une place de stationnement extérieure, soit en complément
+                            de votre logement, soit de façon indépendante selon la disponibilité.
+                        </p>
+                        <ul class="product-list">
+                            <li>Garages fermés (simple) – disponibilité à préciser</li>
+                            <li>Stationnements extérieurs déneigés – selon immeuble</li>
+                            <li>Location avec ou sans logement, selon les cas</li>
+                            <li>Possibilité d’options pour véhicules plus grands, à valider</li>
+                        </ul>
+                        <div class="product-footer">
+                            <span>Priorité aux locataires des immeubles Stratos</span>
+                            <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                                Vérifier la disponibilité
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="section-tag">Contact</div>
+                        <h2 class="section-title">Parler à Stratos Immobilier</h2>
+                        <p class="section-subtitle">
+                            Pour une visite de l’Appartement 1, une question sur un futur logement, la location courte durée,
+                            un espace d’entreposage ou un garage, utilisez le formulaire ou les coordonnées ci-dessous.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-grid">
+                    <aside class="contact-card">
+                        <h3>Coordonnées</h3>
+                        <p>
+                            Montréal, Québec – détails d’adresse à préciser selon les immeubles.
+                            Communication principalement par courriel et téléphone.
+                        </p>
+
+                        <div class="contact-lines">
+                            <span><strong>Téléphone :</strong> <span>514-000-0000</span></span>
+                            <span><strong>Courriel :</strong> <span>info@stratos-immobilier.com</span></span>
+                            <span><strong>Type de locations :</strong> <span>Résidentiel · Courte durée · Espaces · Garages</span></span>
+                            <span><strong>Langues :</strong> <span>Français · Anglais</span></span>
+                        </div>
+                    </aside>
+
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="nom">Nom complet</label>
+                                <input type="text" id="nom" class="form-input" placeholder="Votre nom">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Courriel</label>
+                                <input type="email" id="email" class="form-input" placeholder="vous@exemple.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="telephone">Téléphone</label>
+                                <input type="text" id="telephone" class="form-input" placeholder="514-000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="type-demande">Type de demande</label>
+                                <select id="type-demande" class="form-select">
+                                    <option value="">Sélectionner une option</option>
+                                    <option value="appartement1">Visite – Appartement 1</option>
+                                    <option value="appartement-autre">Autre appartement résidentiel</option>
+                                    <option value="courte-duree">Location courte durée</option>
+                                    <option value="entrepot">Espace d’entreposage</option>
+                                    <option value="garage">Garage / stationnement</option>
+                                    <option value="autre">Autre question</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Donnez quelques détails (dates souhaitées, type d’unité, etc.)"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Envoyer ma demande
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-inner">
+            <div>© <span id="annee"></span> Stratos Immobilier. Tous droits réservés.</div>
+            <div class="footer-links">
+                <span>Montréal & environs</span>
+                <a href="#appartements">Appartements</a>
+                <a href="#courte-duree">Courte durée</a>
+                <a href="#entrepot">Entreposage</a>
+                <a href="#garages">Garages</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Met automatiquement l'année courante dans le footer
+    document.getElementById('annee').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
