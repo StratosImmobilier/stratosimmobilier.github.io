@@ -23,18 +23,17 @@
         border-bottom: 1px solid #333;
         position: sticky;
         top: 0;
-        z-index: 20;
+        z-index: 10;
     }
 
     .logo {
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 700;
-        letter-spacing: 1px;
-        color: #fff;
+        letter-spacing: 2px;
     }
 
     nav a {
-        color: #ccc;
+        color: #e0e0e0;
         margin-left: 30px;
         text-decoration: none;
         font-size: 16px;
@@ -46,7 +45,7 @@
 
     /* HERO */
     .hero {
-        height: 75vh;
+        height: 78vh;
         background: url('hero.jpg') center/cover no-repeat;
         position: relative;
     }
@@ -61,57 +60,53 @@
     .hero-text {
         position: absolute;
         bottom: 60px;
-        left: 60px;
+        left: 50px;
         z-index: 2;
     }
 
     .hero-text h1 {
-        font-size: 58px;
+        font-size: 62px;
         font-weight: 800;
         margin: 0;
         color: #fff;
-        line-height: 1.1;
     }
 
     .hero-text p {
         font-size: 22px;
         color: #d9d9d9;
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
-    /* SECTIONS */
+    /* SECTION APPARTEMENTS */
     .section {
         padding: 70px 60px;
     }
 
     .section h2 {
-        font-size: 32px;
+        font-size: 34px;
         font-weight: 700;
         margin-bottom: 40px;
         border-left: 4px solid #b8860b;
         padding-left: 15px;
-        color: #fff;
     }
 
-    /* GRID */
     .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 35px;
     }
 
-    /* APPARTEMENT CARD */
     .card {
         background: #111;
         border-radius: 12px;
         overflow: hidden;
-        border: 1px solid #222;
         transition: 0.3s;
+        border: 1px solid #222;
     }
 
     .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 35px rgba(0,0,0,0.5);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.5);
     }
 
     .card img {
@@ -173,27 +168,23 @@
     </nav>
 </header>
 
-
-<!-- HERO SECTION -->
 <div class="hero">
     <div class="hero-text">
         <h1>Vivre en Grand.</h1>
-        <p>Appartements rénovés · Gestion professionnelle.</p>
+        <p>Résidences modernes, emplacement stratégique.</p>
     </div>
 </div>
 
-
-<!-- APPARTEMENTS -->
 <section class="section" id="appartements">
     <h2>Appartements Disponibles</h2>
 
     <div class="grid">
 
         <div class="card">
-            <img src="photo1.jpg" alt="">
+            <img src="photo2.jpg" alt="">
             <div class="card-content">
-                <h3>4 ½ – Montréal-Nord (Rénové)</h3>
-                <p>Entièrement rénové · 2 chambres · 1650$/mois.</p>
+                <h3>Appartement 4½ – Montréal-Nord</h3>
+                <p>Unité entièrement rénovée 2025. Cuisine neuve, grand salon, deux chambres.</p>
                 <a class="btn" href="appartement1.html">Voir l’annonce</a>
             </div>
         </div>
