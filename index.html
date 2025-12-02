@@ -2,251 +2,241 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Appartement 1 – 4 ½ Rénové | Stratos Immobilier</title>
+    <title>Appartement 4 ½ rénové | Stratos Immobilier</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- STYLE DE BASE (noir premium + or) -->
     <style>
         :root {
             --noir: #050507;
-            --noir2: #0d0d15;
-            --card: #161622;
-            --border: rgba(255,255,255,0.08);
-            --texte: #ebebf4;
-            --muted: #a0a0b8;
+            --gris: #a7a7b7;
+            --white: #f3f3f6;
+            --card: #12121c;
             --accent: #f5c243;
-            --accent-dark: #bb8a2f;
+            --border: rgba(255,255,255,0.08);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Inter", sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Inter", sans-serif; }
 
         body {
             background: var(--noir);
-            color: var(--texte);
+            color: var(--white);
+            line-height: 1.6;
         }
 
+        /* HEADER */
         header {
-            padding: 18px 40px;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(14px);
+            background: rgba(5,5,7,0.55);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 40px;
+            z-index: 10;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(12px);
-            background: rgba(5,5,7,0.75);
-            z-index: 50;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
+            text-decoration: none;
+            color: var(--white);
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #d7a63d);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #000;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         nav a {
-            color: var(--muted);
-            margin-left: 28px;
             text-decoration: none;
+            color: var(--gris);
+            margin-left: 24px;
             font-size: 15px;
         }
 
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 999px;
-            font-weight: 600;
-            cursor: pointer;
-        }
+        nav a:hover { color: var(--accent); }
 
         .btn-primary {
             background: var(--accent);
+            padding: 10px 20px;
+            border-radius: 999px;
             border: none;
+            cursor: pointer;
+            font-weight: 600;
             color: #000;
         }
 
+        /* HERO */
         .hero {
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            height: 90vh;
+            width: 100%;
+            position: relative;
+            display: flex;
             align-items: center;
+            padding: 0 60px;
+            color: var(--white);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("images/hero.jpg") center/cover no-repeat;
+            filter: brightness(0.45);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 600px;
+            z-index: 2;
         }
 
         .hero-title {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 800;
             margin-bottom: 20px;
+            line-height: 1.15;
         }
 
-        .hero-title span {
-            color: var(--accent);
-        }
+        .hero-title span { color: var(--accent); }
 
         .hero-sub {
-            color: var(--muted);
-            font-size: 17px;
-            margin-bottom: 20px;
-            max-width: 500px;
+            color: var(--gris);
+            font-size: 18px;
+            margin-bottom: 30px;
         }
 
-        .hero-img {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .hero-img img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
+        /* SECTION */
         .section {
-            padding: 60px 40px;
+            padding: 70px 40px;
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 700;
             margin-bottom: 10px;
         }
 
         .section-sub {
-            color: var(--muted);
-            font-size: 15px;
+            color: var(--gris);
             margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 22px;
+            border-radius: 14px;
         }
 
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 28px;
+            gap: 22px;
         }
 
-        .card {
-            background: var(--card);
-            border-radius: 14px;
-            padding: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .card h3 {
-            margin-bottom: 12px;
-        }
-
+        /* GALLERY */
         .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 14px;
         }
 
         .gallery img {
             width: 100%;
-            height: 140px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid var(--border);
         }
 
+        /* FOOTER */
         footer {
             margin-top: 60px;
+            border-top: 1px solid var(--border);
             padding: 20px;
             text-align: center;
-            border-top: 1px solid var(--border);
-            color: var(--muted);
+            font-size: 14px;
+            color: var(--gris);
         }
-
     </style>
 </head>
+
 <body>
 
 <header>
-    <div class="logo">
+    <a href="#" class="logo">
         <div class="logo-icon">S</div>
-        <div>
-            <strong>STRATOS IMMOBILIER</strong><br>
-            <small style="color: var(--muted);">Appartements rénovés • Montréal-Nord</small>
-        </div>
-    </div>
+        <div><strong>STRATOS IMMOBILIER</strong></div>
+    </a>
 
     <nav>
-        <a href="#">Accueil</a>
         <a href="#details">Détails</a>
         <a href="#photos">Photos</a>
         <a href="#contact">Contact</a>
     </nav>
 
-    <button class="btn btn-primary" onclick="window.location='#contact'">Demander une visite</button>
+    <button class="btn-primary" onclick="window.location='#contact'">Visiter</button>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-    <div>
+    <div class="hero-content">
         <h1 class="hero-title">
-            Appartement <span>4 ½ rénové</span> – Montréal-Nord
+            Appartement <span>4 ½ rénové</span><br>Montréal-Nord
         </h1>
-        <p class="hero-sub">
-            Unité complètement rénovée avec cuisine neuve, salle de bain moderne, deux chambres fermées et finitions haut de gamme. Disponible immédiatement.
-        </p>
-        <button class="btn btn-primary" onclick="window.location='#contact'">Voir disponibilité</button>
-    </div>
 
-    <div class="hero-img">
-        <img src="images/appartement1-hero.jpg" alt="Appartement 1">
+        <p class="hero-sub">
+            Unité lumineuse entièrement rénovée : cuisine neuve, salle de bain moderne, deux chambres fermées et finitions haut de gamme.
+        </p>
+
+        <button class="btn-primary" onclick="window.location='#details'">
+            Voir les détails
+        </button>
     </div>
 </section>
 
 <!-- DETAILS -->
-<section id="details" class="section">
-    <h2 class="section-title">Détails de l’appartement</h2>
-    <p class="section-sub">Informations essentielles</p>
+<section class="section" id="details">
+    <h2 class="section-title">Détails</h2>
+    <p class="section-sub">Informations essentielles de l’appartement</p>
 
     <div class="grid-2">
         <div class="card">
             <h3>Caractéristiques</h3>
             <p><strong>Type :</strong> 4 ½</p>
+            <p><strong>Prix :</strong> 1 650 $ / mois</p>
             <p><strong>Chambres :</strong> 2 fermées</p>
-            <p><strong>Prix :</strong> 1 650$ / mois</p>
-            <p><strong>État :</strong> Entièrement rénové</p>
-            <p><strong>Localisation :</strong> Montréal-Nord</p>
+            <p><strong>État :</strong> entièrement rénové</p>
         </div>
 
         <div class="card">
             <h3>Inclusions</h3>
-            <p>• Cuisine moderne</p>
+            <p>• Cuisine neuve</p>
+            <p>• Salle de bain refaite</p>
+            <p>• Entrée laveuse/sécheuse</p>
             <p>• Nouveau plancher</p>
-            <p>• Salle de bain neuve</p>
-            <p>• Entrées laveuse/sécheuse</p>
         </div>
     </div>
 </section>
 
 <!-- PHOTOS -->
-<section id="photos" class="section">
-    <h2 class="section-title">Galerie de photos</h2>
-    <p class="section-sub">Aperçu de l’appartement</p>
+<section class="section" id="photos">
+    <h2 class="section-title">Photos</h2>
+    <p class="section-sub">Aperçu de l’unité</p>
 
     <div class="gallery">
         <img src="images/app1-1.jpg">
@@ -259,19 +249,19 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
-    <h2 class="section-title">Nous contacter</h2>
-    <p class="section-sub">Demande de visite ou informations supplémentaires</p>
+<section class="section" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Disponible immédiatement — contactez-nous</p>
 
     <div class="card">
         <p><strong>Téléphone :</strong> 514-000-0000</p>
         <p><strong>Email :</strong> info@stratos-immobilier.com</p>
-        <p>Réponses rapides • Gestion professionnelle</p>
+        <p style="margin-top: 10px;">Réponses rapides • Gestion professionnelle</p>
     </div>
 </section>
 
 <footer>
-    © <span id="year"></span> Stratos Immobilier — Tous droits réservés.
+    © <span id="year"></span> Stratos Immobilier
 </footer>
 
 <script>
