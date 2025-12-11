@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Logements à louer – Carte | Stratos Immobilier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #222;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        .title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        #map {
+            width: 100%;
+            height: calc(100vh - 80px);
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="title">Logements à louer — Carte interactive</div>
+</header>
+
+<div id="map"></div>
+
+<script>
+    // COORDONNÉES DES LOGEMENTS
+    const appartements = [
+        {
+            nom: "Appartement 1 — Montréal-Nord",
+            lat: 45.6087,
+            lng: -73.6383,
+            url: "appartement1.html"
+        },
+        {
+            nom: "Appartement 2 — Montréal",
+            lat: 45.5152,
+            lng: -73.5560,
+            url: "#"
+        },
+        {
+            nom: "Appartement 3 — Laval",
+            lat: 45.6066,
+            lng: -73.7124,
+            url: "#"
+        }
+    ];
+
+    function initMap() {
+        const mtl = { lat: 45.55, lng: -73.65 }; // centre par défaut (Montréal)
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 11,
+            center: mtl,
+            styles: [
+                { elementType: "geometry", stylers: [{ color: "#1d1d1d" }] },
+                { elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+                { elementType: "labels.text.stroke", stylers: [{ color: "#000000" }] },
+                { featureType: "water", stylers: [{ color: "#0f1115" }] }
+            ]
+        });
+
+        appartements.forEach(app => {
+            const marker = new google.maps.Marker({
+                position: { lat: app.lat, lng: app.lng },
+                map: map,
+                title: app.nom
+            });
+
+            const info = new google.maps.InfoWindow({
+                content: `
+                    <div style="color:black;">
+                        <strong>${app.nom}</strong><br>
+                        <a href="${app.url}" target="_blank">Voir le logement →</a>
+                    </div>
+                `
+            });
+
+            marker.addListener("click", () => {
+                info.open(map, marker);
+            });
+        });
+    }
+</script>
+
+<!-- GOOGLE MAPS API (inscris ta clé API) -->
+<script src="https://maps.googleapis.com/maps/api/js?key=TON_API_KEY&callback=initMap" async defer></script>
+
+</body>
+</html>
