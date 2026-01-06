@@ -241,7 +241,7 @@ footer{
     color:#888;
 }
 
-/* ✅ Mobile: la box 50% devient 100% */
+/* Mobile */
 @media (max-width: 900px){
     .card-link{ width:100%; }
 }
@@ -290,73 +290,40 @@ footer{
 <div id="tab-appartements" class="tab-content active">
 <div class="cards-grid">
 
-<a href="appartement1.html" class="card-link" aria-label="Ouvrir Appartement 4 ½ – Pelletier">
-    <div class="card">
-        <span class="badge-available">Disponible</span>
-        <h3>Appartement 4 ½ – Pelletier</h3>
-        <p>Unité résidentielle disponible.</p>
+<a href="appartement1.html" class="card-link">
+<div class="card">
+<span class="badge-available">Disponible</span>
+<h3>Appartement 4 ½ – Pelletier</h3>
+<p>Unité résidentielle disponible.</p>
+<img src="photo5.jpg" alt="Appartement Pelletier"
+style="width:75%;max-width:220px;margin:.75rem auto 0;border-radius:8px;border:1px solid #222;">
+</div>
+</a>
 
-        <img
-            src="photo5.jpg"
-            alt="Aperçu Appartement 4 ½ – Pelletier"
-            style="
-                width:75%;
-                max-width:220px;
-                margin:0.75rem auto 0;
-                border-radius:8px;
-                border:1px solid #222;
-                display:block;
-            "
-        >
-    </div>
+<a href="appartement2.html" class="card-link">
+<div class="card">
+<span class="badge-available">Disponible</span>
+<h3>Appartement 4 ½ – Beaubien</h3>
+<p>Unité résidentielle disponible.</p>
+<img src="photo6.jpg" alt="Appartement Beaubien"
+style="width:75%;max-width:220px;margin:.75rem auto 0;border-radius:8px;border:1px solid #222;">
+</div>
 </a>
 
 </div>
 </div>
 
 <div id="tab-courte" class="tab-content">
-<div class="cards-grid">
-<div class="card">
-<h3>Logement meublé</h3>
-<p>Location à la nuit, semaine ou mois.</p>
-</div>
-</div>
+<div class="cards-grid"><div class="card"><h3>Logement meublé</h3></div></div>
 </div>
 
 <div id="tab-entreposage" class="tab-content">
-<div class="cards-grid">
-<div class="card">
-<h3>Entreposage</h3>
-<p>Espace sécuritaire.</p>
-</div>
-</div>
+<div class="cards-grid"><div class="card"><h3>Entreposage</h3></div></div>
 </div>
 
 <div id="tab-garages" class="tab-content">
-<div class="cards-grid">
-<div class="card">
-<h3>Garage privé</h3>
-<p>Stationnement intérieur.</p>
+<div class="cards-grid"><div class="card"><h3>Garage privé</h3></div></div>
 </div>
-</div>
-</div>
-</section>
-
-<section id="map" class="map-section">
-    <h2 style="text-transform:uppercase;margin-bottom:1rem;">Localisation des immeubles</h2>
-
-    <div class="map-card">
-        <iframe
-            class="map-embed"
-            src="https://www.google.com/maps/d/embed?mid=1FztUC3DR1oEZjOLGjez023cMUyXm2r0"
-            loading="lazy"
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <p style="color:#b5b5b5;margin-top:0.75rem;">
-        Carte interactive avec tous les immeubles.
-    </p>
 </section>
 
 <section id="contact">
@@ -365,35 +332,19 @@ footer{
 <p>Courriel : <a href="mailto:stratosimmobilier@hotmail.com">stratosimmobilier@hotmail.com</a></p>
 </section>
 
-<footer>
-© <span id="year"></span> Stratos Immobilier
-</footer>
+<footer>© <span id="year"></span> Stratos Immobilier</footer>
 
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
-
-const tabs=document.querySelectorAll(".tab");
-const contents=document.querySelectorAll(".tab-content");
-
-tabs.forEach(tab=>{
-tab.addEventListener("click",()=>{
-const target=tab.dataset.tab;
-tabs.forEach(t=>t.classList.remove("active"));
+document.querySelectorAll(".tab").forEach(tab=>{
+tab.onclick=()=>{
+document.querySelectorAll(".tab,.tab-content").forEach(e=>e.classList.remove("active"));
 tab.classList.add("active");
-contents.forEach(c=>c.classList.remove("active"));
-document.getElementById("tab-"+target).classList.add("active");
-});
-});
-
-document.getElementById("btn-voir-logements").addEventListener("click",e=>{
-e.preventDefault();
-document.querySelector('.tab[data-tab="appartements"]').click();
-document.getElementById("tabs").scrollIntoView({behavior:"smooth"});
+document.getElementById("tab-"+tab.dataset.tab).classList.add("active");
+};
 });
 </script>
 
 </div>
 </body>
 </html>
-
-
