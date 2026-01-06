@@ -164,7 +164,7 @@ nav{display:flex;gap:.75rem}
 /* CARDS */
 .cards-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr); /* CHANGÉ: 2 colonnes pour 2 annonces */
     gap:1.2rem;
 }
 
@@ -178,7 +178,7 @@ nav{display:flex;gap:.75rem}
 /* Hover + pointer + badge */
 .card-link{
     display:block;
-    width:50%;
+    width:100%; /* CHANGÉ: enlève le 50% qui éloignait/cassait l'alignement */
     cursor:pointer;
 }
 
