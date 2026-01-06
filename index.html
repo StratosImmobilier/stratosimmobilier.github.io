@@ -164,7 +164,7 @@ nav{display:flex;gap:.75rem}
 /* CARDS */
 .cards-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr); /* CHANGÉ: 2 colonnes pour 2 annonces */
+    grid-template-columns:repeat(2,1fr);
     gap:1.2rem;
 }
 
@@ -178,7 +178,7 @@ nav{display:flex;gap:.75rem}
 /* Hover + pointer + badge */
 .card-link{
     display:block;
-    width:100%; /* CHANGÉ: enlève le 50% qui éloignait/cassait l'alignement */
+    width:100%;
     cursor:pointer;
 }
 
@@ -243,6 +243,7 @@ footer{
 
 /* Mobile */
 @media (max-width: 900px){
+    .cards-grid{ grid-template-columns:1fr; }
     .card-link{ width:100%; }
 }
 </style>
@@ -305,7 +306,7 @@ style="width:75%;max-width:220px;margin:.75rem auto 0;border-radius:8px;border:1
 <span class="badge-available">Disponible</span>
 <h3>Appartement 4 ½ – Beaubien</h3>
 <p>Unité résidentielle disponible.</p>
-<img src="photo7.jpg" alt="Appartement Beaubien"
+<img src="photo6.jpg" alt="Appartement Beaubien"
 style="width:75%;max-width:220px;margin:.75rem auto 0;border-radius:8px;border:1px solid #222;">
 </div>
 </a>
@@ -314,16 +315,49 @@ style="width:75%;max-width:220px;margin:.75rem auto 0;border-radius:8px;border:1
 </div>
 
 <div id="tab-courte" class="tab-content">
-<div class="cards-grid"><div class="card"><h3>Logement meublé</h3></div></div>
+<div class="cards-grid">
+<div class="card">
+<h3>Logement meublé</h3>
+<p>Location à la nuit, semaine ou mois.</p>
+</div>
+</div>
 </div>
 
 <div id="tab-entreposage" class="tab-content">
-<div class="cards-grid"><div class="card"><h3>Entreposage</h3></div></div>
+<div class="cards-grid">
+<div class="card">
+<h3>Entreposage</h3>
+<p>Espace sécuritaire.</p>
+</div>
+</div>
 </div>
 
 <div id="tab-garages" class="tab-content">
-<div class="cards-grid"><div class="card"><h3>Garage privé</h3></div></div>
+<div class="cards-grid">
+<div class="card">
+<h3>Garage privé</h3>
+<p>Stationnement intérieur.</p>
 </div>
+</div>
+</div>
+</section>
+
+<!-- ✅ CARTE GOOGLE EARTH REMISE -->
+<section id="map" class="map-section">
+    <h2 style="text-transform:uppercase;margin-bottom:1rem;">Localisation des immeubles</h2>
+
+    <div class="map-card">
+        <iframe
+            class="map-embed"
+            src="https://www.google.com/maps/d/embed?mid=1FztUC3DR1oEZjOLGjez023cMUyXm2r0"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <p style="color:#b5b5b5;margin-top:0.75rem;">
+        Carte interactive avec tous les immeubles.
+    </p>
 </section>
 
 <section id="contact">
@@ -332,20 +366,33 @@ style="width:75%;max-width:220px;margin:.75rem auto 0;border-radius:8px;border:1
 <p>Courriel : <a href="mailto:stratosimmobilier@hotmail.com">stratosimmobilier@hotmail.com</a></p>
 </section>
 
-<footer>© <span id="year"></span> Stratos Immobilier</footer>
+<footer>
+© <span id="year"></span> Stratos Immobilier
+</footer>
 
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
-document.querySelectorAll(".tab").forEach(tab=>{
-tab.onclick=()=>{
-document.querySelectorAll(".tab,.tab-content").forEach(e=>e.classList.remove("active"));
+
+const tabs=document.querySelectorAll(".tab");
+const contents=document.querySelectorAll(".tab-content");
+
+tabs.forEach(tab=>{
+tab.addEventListener("click",()=>{
+const target=tab.dataset.tab;
+tabs.forEach(t=>t.classList.remove("active"));
 tab.classList.add("active");
-document.getElementById("tab-"+tab.dataset.tab).classList.add("active");
-};
+contents.forEach(c=>c.classList.remove("active"));
+document.getElementById("tab-"+target).classList.add("active");
+});
+});
+
+document.getElementById("btn-voir-logements").addEventListener("click",e=>{
+e.preventDefault();
+document.querySelector('.tab[data-tab="appartements"]').click();
+document.getElementById("tabs").scrollIntoView({behavior:"smooth"});
 });
 </script>
 
 </div>
 </body>
 </html>
-
